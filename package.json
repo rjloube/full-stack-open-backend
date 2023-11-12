@@ -1,0 +1,27 @@
+{
+  "name": "full-stack-open-backend",
+  "version": "1.0.0",
+  "description": "Repo for Full Stack Open course backend exercises",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rjloube/full-stack-open-backend.git"
+  },
+  "author": "rjloube",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rjloube/full-stack-open-backend/issues"
+  },
+  "homepage": "https://github.com/rjloube/full-stack-open-backend#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
