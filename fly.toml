@@ -1,0 +1,20 @@
+# fly.toml app configuration file generated for rjloube-phonebook on 2023-11-19T18:40:58-08:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "rjloube-phonebook"
+primary_region = "sjc"
+
+[build]
+
+[env]
+PORT = "3001"
+
+[http_service]
+auto_start_machines = true
+auto_stop_machines = true
+force_https = true
+internal_port = 3001
+min_machines_running = 0
+processes = ["app"]
