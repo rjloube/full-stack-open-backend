@@ -12,29 +12,6 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.static("build"));
 
-// let persons = [
-//   {
-//     id: 1,
-//     name: "Arto Hellas",
-//     number: "040-123456",
-//   },
-//   {
-//     id: 2,
-//     name: "Ada Lovelace",
-//     number: "39-44-5323523",
-//   },
-//   {
-//     id: 3,
-//     name: "Dan Abramov",
-//     number: "12-43-234345",
-//   },
-//   {
-//     id: 4,
-//     name: "Mary Poppendieck",
-//     number: "39-23-6423122",
-//   },
-// ];
-
 app.get("/api/persons", (req, res) => {
   Person.find({}).then((persons) => {
     res.json(persons);
@@ -73,30 +50,26 @@ app.delete("/api/persons/:id", (req, res) => {
 });
 
 app.post("/api/persons", (req, res) => {
-  const body = req.body;
+  const { name, number } = req.body;
 
-  if (!body.name || !body.number) {
-    return res.status(400).json({
-      error: "name or number missing",
-    });
-  } else if (
-    persons.find(
-      (person) => person.name.toLowerCase() === body.name.toLowerCase()
-    )
-  ) {
-    return res.status(400).json({
-      error: "name must be unique",
-    });
+  if (!name || !number) {
+    return res.status(400).json({ error: "Name and number are required" });
   }
 
-  const person = {
-    id: Math.floor(Math.random() * 10000),
-    name: body.name,
-    number: body.number,
-  };
+  Person.findOne({ name }).then((existingPerson) => {
+    if (existingPerson) {
+      return res.status(400).json({ error: "Person already exists" });
+    }
 
-  persons = persons.concat(person);
-  res.json(person);
+    const newPerson = new Person({
+      name,
+      number,
+    });
+
+    newPerson.save().then((savedPerson) => {
+      res.json(savedPerson);
+    });
+  });
 });
 
 const PORT = 3001;
