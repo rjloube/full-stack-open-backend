@@ -6,10 +6,10 @@ Content-Type: application/json
   "number": "040-123456"
 }
 ###
-# POST http://localhost:3001/api/persons
-# Content-Type: application/json
+POST http://localhost:3001/api/persons
+Content-Type: application/json
 
-# {
-#   "name": "Mike Jones",
-#   "number": "281-330-8004"
-# }
+{
+  "name": "Mike Jones",
+  "number": "281-330-8004"
+}
