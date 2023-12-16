@@ -48,7 +48,7 @@ app.delete("/api/persons/:id", (req, res, next) => {
 });
 
 // Middleware for validating request body
-function validatePerson(req, res, next) {
+const validatePerson = (req, res, next) => {
   const { name, number } = req.body;
 
   if (!name || !number) {
@@ -63,7 +63,7 @@ function validatePerson(req, res, next) {
       next();
     })
     .catch((error) => next(error));
-}
+};
 
 app.post("/api/persons", validatePerson, (req, res, next) => {
   const { name, number } = req.body;
