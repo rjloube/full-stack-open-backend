@@ -1,9 +1,9 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 // Connect to MongoDB Atlas
 const password = process.argv[2];
 const url = `mongodb+srv://rjloube:${password}@cluster0.wlyvwiq.mongodb.net/phonebookApp?retryWrites=true&w=majority`;
-mongoose.set("strictQuery", false);
+mongoose.set('strictQuery', false);
 mongoose.connect(url);
 
 // Define the person schema
@@ -13,12 +13,12 @@ const personSchema = new mongoose.Schema({
 });
 
 // Create the person model
-const Person = mongoose.model("Person", personSchema);
+const Person = mongoose.model('Person', personSchema);
 
 // If only password is provided, display all entries in the phonebook
 if (process.argv.length === 3) {
   Person.find({}).then((persons) => {
-    console.log("phonebook:");
+    console.log('phonebook:');
     persons.forEach((person) => {
       console.log(`${person.name} ${person.number}`);
     });
@@ -45,7 +45,7 @@ if (process.argv.length === 5) {
 // If wrong number of arguments are provided, display error message
 if (process.argv.length !== 3 && process.argv.length !== 5) {
   console.log(
-    "Invalid number of arguments. Please provide either only the password or the name and number."
+    'Invalid number of arguments. Please provide either only the password or the name and number.'
   );
   mongoose.connection.close();
 }
